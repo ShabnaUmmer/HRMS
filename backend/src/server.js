@@ -1,12 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
 
 // Routes
 import authRoutes from './routes/auth.js';
 import employeeRoutes from './routes/employees.js';
 import teamRoutes from './routes/teams.js';
-import logsRoutes from './routes/logs.js'; // ADD THIS IMPORT
+import logsRoutes from './routes/logs.js'; 
 
 // Middleware
 import { errorHandler } from './middlewares/errorHandler.js';
