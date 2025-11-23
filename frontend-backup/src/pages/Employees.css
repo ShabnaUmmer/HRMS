@@ -1,0 +1,237 @@
+.employees-page {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 70px);
+}
+
+.employees-page h2 {
+  color: #1f2937;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #dc2626;
+  font-weight: 500;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 1.25rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.no-data {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-style: italic;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px dashed #d1d5db;
+}
+
+.employees-list {
+  margin-top: 2rem;
+}
+
+.employees-list h3 {
+  color: #374151;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.employee-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.employee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: #3b82f6;
+}
+
+.employee-info h4 {
+  margin: 0 0 0.75rem 0;
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.employee-info p {
+  margin: 0.5rem 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.employee-info strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+.employee-teams {
+  margin-top: 1rem;
+}
+
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.team-tag {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #bfdbfe;
+}
+
+.no-teams {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.employee-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.edit-btn, .assign-btn, .delete-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.edit-btn {
+  background: #fbbf24;
+  color: #78350f;
+}
+
+.edit-btn:hover {
+  background: #f59e0b;
+  transform: translateY(-1px);
+}
+
+.assign-btn {
+  background: #3b82f6;
+  color: white;
+}
+
+.assign-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .employee-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .employees-page {
+    padding: 1rem;
+  }
+
+  .employees-page h2 {
+    font-size: 1.75rem;
+  }
+
+  .employee-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .employee-card {
+    padding: 1.25rem;
+    min-height: auto;
+  }
+
+  .employee-actions {
+    flex-direction: column;
+  }
+
+  .edit-btn, .assign-btn, .delete-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .employees-page {
+    padding: 0.75rem;
+  }
+
+  .employees-page h2 {
+    font-size: 1.5rem;
+  }
+
+  .employee-card {
+    padding: 1rem;
+  }
+
+  .employee-info h4 {
+    font-size: 1.1rem;
+  }
+}
