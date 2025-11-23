@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Organisation {
+  id        Int       @id @default(autoincrement())
+  name      String
+  createdAt DateTime  @default(now())
+  users     User[]
+  employees Employee[]
+  teams     Team[]
+  logs      Log[]
+}
+
+model User {
+  id             Int           @id @default(autoincrement())
+  name           String
+  email          String        @unique
+  passwordHash   String
+  organisationId Int
+  organisation   Organisation  @relation(fields: [organisationId], references: [id])
+  logs           Log[]
+}
+
+model Employee {
+  id             Int      @id @default(autoincrement())
+  organisationId Int
+  firstName      String
+  lastName       String
+  email          String?
+  phone          String?
+  createdAt      DateTime @default(now())
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  teams          EmployeeTeam[]
+}
+
+model Team {
+  id             Int      @id @default(autoincrement())
+  organisationId Int
+  name           String
+  description    String?
+  createdAt      DateTime @default(now())
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  employees      EmployeeTeam[]
+}
+
+model EmployeeTeam {
+  id         Int      @id @default(autoincrement())
+  employeeId Int
+  teamId     Int
+  assignedAt DateTime @default(now())
+
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  team       Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, teamId])
+}
+
+model Log {
+  id             Int      @id @default(autoincrement())
+  organisationId Int
+  userId         Int
+  action         String   // e.g., 'user_logged_in', 'employee_created'
+  entityType     String?  // e.g., 'Employee', 'Team', 'User'
+  entityId       Int?     // ID of the affected entity
+  description    String?  // Human-readable description
+  meta           String?  // JSON string with additional data
+  timestamp      DateTime @default(now())
+
+  organisation Organisation @relation(fields: [organisationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@map("logs")
+}
